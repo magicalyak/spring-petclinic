@@ -40,20 +40,11 @@ pipeline {
             }
         }
 
-		// stage('Build Docker image') {
-		// 	steps {
-		// 		script {
-		// 			// docker.build("$DOCKER_IMAGE_NAME", 'docker-oci-examples/docker-example')
-        //             docker.build("$DOCKER_IMAGE_NAME", 'docker-oci-examples/docker-example')
-		// 		}
-		// 	}
-		// }
-
 		stage('Scan and push image') {
 			steps {
 				dir('docker-oci-examples/spring-petclinic/') {
 					// Scan Docker image for vulnerabilities
-					// jf 'docker scan $DOCKER_IMAGE_NAME'
+					jf 'docker scan $DOCKER_IMAGE_NAME'
 
 					// Push image to Artifactory
 					jf 'docker push $DOCKER_IMAGE_NAME'
