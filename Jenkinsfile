@@ -40,11 +40,20 @@ pipeline {
             }
         }
 
-		stage('Scan and push image') {
+        stage('Scan container with Trivy') {
+            steps {
+                script {
+                    sh 'trivy image --exit-code 1 --severity HIGH,CRITICAL $DOCKER_IMAGE_NAME'
+                }
+                
+            }
+        }
+
+		stage('Push image to Artifactory') {
 			steps {
 				dir('docker-oci-examples/spring-petclinic/') {
 					// Scan Docker image for vulnerabilities
-					jf 'docker scan $DOCKER_IMAGE_NAME'
+					// jf 'docker scan $DOCKER_IMAGE_NAME'
 
 					// Push image to Artifactory
 					jf 'docker push $DOCKER_IMAGE_NAME'
