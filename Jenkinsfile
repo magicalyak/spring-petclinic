@@ -30,6 +30,9 @@ pipeline {
         stage("Package the application") {
             steps {
                 sh './mvnw spring-boot:build-image'
+
+                //Tag Image
+                jf 'docker tag spring-petclinic:3.1.0-SNAPSHOT $DOCKER_IMAGE_NAME'
             }
         }
 
@@ -43,7 +46,7 @@ pipeline {
 
 		stage('Scan and push image') {
 			steps {
-				dir('docker-oci-examples/sprint-petclinic/') {
+				dir('docker-oci-examples/spring-petclinic/') {
 					// Scan Docker image for vulnerabilities
 					jf 'docker scan $DOCKER_IMAGE_NAME'
 
