@@ -43,7 +43,7 @@ pipeline {
         stage('Scan container with Trivy') {
             steps {
                 script {
-                    sh 'trivy image --exit-code 1 --severity HIGH,CRITICAL $DOCKER_IMAGE_NAME'
+                    sh 'trivy image --exit-code 1 --severity HIGH,CRITICAL spring-petclinic:3.1.0-SNAPSHOT'
                 }
                 
             }
