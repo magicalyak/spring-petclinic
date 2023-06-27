@@ -13,25 +13,23 @@ pipeline {
 			}
 		}
 
-        stage("Compile the code") {
+        stage('Compile the code') {
             steps {
-                sh "./mvnw clean install -DskipTests"
+                sh './mvnw clean install -DskipTests'
             }
         }
 
-        stage("Tests and Deployment") {
-            stage("Run the tests") {
-                steps {
-                    sh "./mvnw test -Punit"
-                }
+        stage("Run the tests") {
+            steps {
+                sh './mvnw test -Punit'
             }
+        }
             // stage("Deployment") {
             //     sh 'nohup ./mvnw spring-boot:run -Dserver.port=8001 &'
             // }
-            stage("Package the application") {
-                steps {
-                    sh "./mvnw spring-boot:build-image"
-                }
+        stage("Package the application") {
+            steps {
+                sh './mvnw spring-boot:build-image'
             }
         }
 
@@ -62,30 +60,3 @@ pipeline {
 		}
 	}
 }
-
-// node {
-//     stage("Clone the project") {
-//         git branch: 'main', url: 'https://github.com/magicalyak/spring-petclinic.git'
-//     }
-
-//     stage("Compile the code") {
-//         sh "./mvnw clean install -DskipTests"
-//     }
-
-//     stage("Tests and Deployment") {
-//         stage("Run the tests") {
-//             sh "./mvnw test -Punit"
-//         }
-//         // stage("Deployment") {
-//         //     sh 'nohup ./mvnw spring-boot:run -Dserver.port=8001 &'
-//         // }
-//         stage("Package the application") {
-//             sh "./mvnw spring-boot:build-image"
-//         }
-//     }
-//     stage("Docker push to artifactory") {
-//         withDockerRegistry([credentialsId: 'artifactory', url: 'http://localhost:8081/artifactory']) {
-//             sh "docker push localhost:8081/artifactory/spring-petclinic:latest"
-//         }
-//     }
-// }
