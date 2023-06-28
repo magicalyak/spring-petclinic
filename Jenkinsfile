@@ -58,6 +58,14 @@ pipeline {
             }
         }
 
+        stage('Scan OWASP Dependencies') {
+            steps {
+                script {
+                    dependencyCheck additionalArguments: 'scan="." --format HTML', odcInstallation: 'OWASP-Dependency-Check'
+                }
+            }
+        }
+
 		stage('Push image to Artifactory') {
 			steps {
 				dir('docker-oci-examples/spring-petclinic/') {
