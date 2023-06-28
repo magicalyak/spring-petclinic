@@ -52,7 +52,7 @@ pipeline {
                     //     trivy image spring-petclinic:3.1.0-SNAPSHOT --format template --template @./html.tpl --output trivy_report.html
                     // """
                     sh """
-                        trivy filesystem --ignore-unfixed --vuln-type os,library --format template --template @./html.tpl --output trivy_report.html
+                        trivy filesystem --ignore-unfixed --vuln-type os,library --format template --template @./html.tpl --output trivy_report.html ./
                     """
                 }
             }
