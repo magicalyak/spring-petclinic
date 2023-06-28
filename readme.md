@@ -48,6 +48,21 @@ docker run -p 9090:8080 petclinic-app
 docker stop petclinic-app
 ```
 
+## Running petclinic from remote docker image
+
+1. Run the container (we map port 8080 to 9090 because our local Jenkins uses 8080)
+
+```bash
+docker run -d -p 9090:8080 --name petclinic-app gamull.jfrog.io/docker-local/spring-petclinic:3.1.0-SNAPSHOT
+```
+
+2. Visit [http://localhost:9090](http://localhost:9090) in your browser.
+3. Stop the container
+
+```bash
+docker stop petclinic-app
+```
+
 ## Database configuration
 
 In its default configuration, Petclinic uses an in-memory database (H2) which
