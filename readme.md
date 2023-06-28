@@ -48,6 +48,12 @@ docker run -p 9090:8080 petclinic-app
 docker stop petclinic-app
 ```
 
+6. Remove the container
+
+```bash
+docker rm petclinic-app
+```
+
 ## Running petclinic from remote docker image
 
 1. Run the container (we map port 8080 to 9090 because our local Jenkins uses 8080)
@@ -61,6 +67,12 @@ docker run -d -p 9090:8080 --name petclinic-app gamull.jfrog.io/docker-local/spr
 
 ```bash
 docker stop petclinic-app
+```
+
+4. Remove the container
+
+```bash
+docker rm petclinic-app
 ```
 
 ## Database configuration
