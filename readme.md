@@ -134,7 +134,7 @@ We already have a synk version scan from docker in the JFrog pipeline but Trivy 
 
 ## OWASP Dependency Check
 
-
+OWASP Dependency Check is a tool that can be used to find vulnerabilities in your code.  It is a good idea to run this tool on your code before you build your container.  This project did integrate OWASP Dependency Check.
 
 ## Managing Secrets
 
