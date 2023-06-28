@@ -43,9 +43,18 @@ pipeline {
         stage('Scan container with Trivy') {
             steps {
                 script {
-                    sh 'trivy image --format template --template html.tpl --output trivy_report.html spring-petclinic:3.1.0-SNAPSHOT'
+                    sh """
+                        trivy image spring-petclinic:3.1.0-SNAPSHOT --format template --template html.tpl --output trivy_report.html || true
+                    """
                 }
-                
+                publishHTML(target: [
+                    allowMissing: true,
+                    alwaysLinkToLastBuild: false,
+                    keepAll: true,
+                    reportDir: ".",
+                    reportFiles: "report.html",
+                    reportName: "Trivy Report",
+                ])
             }
         }
 
@@ -67,18 +76,4 @@ pipeline {
 			}
 		}
 	}
-    post {
-        always {
-            archiveArtifacts artifacts: "trivy_report.html", fingerprint: true
-                
-            publishHTML (target: [
-                allowMissing: false,
-                alwaysLinkToLastBuild: false,
-                keepAll: true,
-                reportDir: '.',
-                reportFiles: 'trivy_report.html',
-                reportName: 'Trivy Scan',
-                ])
-            }
-    }
 }
