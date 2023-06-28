@@ -44,7 +44,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                        trivy image spring-petclinic:3.1.0-SNAPSHOT --format template --template html.tpl --output trivy_report.html || true
+                        trivy image spring-petclinic:3.1.0-SNAPSHOT --format template --template html.tpl --output trivy_report.html
                     """
                 }
                 publishHTML(target: [
