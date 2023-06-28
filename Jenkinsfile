@@ -43,6 +43,7 @@ pipeline {
         stage('Scan container with Trivy') {
             steps {
                 script {
+                    sh 'curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl > html.tpl'
                     sh """
                         trivy image spring-petclinic:3.1.0-SNAPSHOT --format template --template @./html.tpl --output trivy_report.html
                     """
