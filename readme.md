@@ -48,22 +48,6 @@ docker run -p 9090:8080 petclinic-app
 docker stop petclinic-app
 ```
 
-## Running petclinic locally with Docker Compose
-
-1. Install Docker on your local machine
-2. Run the container (we map port 8080 to 9090 because our local Jenkins uses 8080)
-
-```bash 
-docker-compose up
-```
-
-3. Visit [http://localhost:9090](http://localhost:9090) in your browser.
-4. Stop the container
-
-```bash
-docker-compose down
-```
-
 ## Database configuration
 
 In its default configuration, Petclinic uses an in-memory database (H2) which
