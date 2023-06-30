@@ -84,19 +84,19 @@ pipeline {
 			}
 		}
 	}
-    // post {
-    //     always {
-    //         archiveArtifacts artifacts: "trivy_report.html", fingerprint: true
+    post {
+        always {
+            archiveArtifacts artifacts: "trivy_report.html", fingerprint: true
                 
-    //         publishHTML (target: [
-    //             allowMissing: true,
-    //             alwaysLinkToLastBuild: true,
-    //             keepAll: true,
-    //             reportDir: '.',
-    //             reportFiles: 'trivy_report.html',
-    //             reportName: 'Trivy Scan',
-    //             reportTitles: 'Trivy Scan'
-    //         ])
-    //     }
-    // }
+            publishHTML (target: [
+                allowMissing: true,
+                alwaysLinkToLastBuild: true,
+                keepAll: true,
+                reportDir: '.',
+                reportFiles: 'trivy_report.html',
+                reportName: 'Trivy Scan',
+                reportTitles: 'Trivy Scan'
+            ])
+        }
+    }
 }
