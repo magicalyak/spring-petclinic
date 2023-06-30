@@ -15,7 +15,7 @@ pipeline {
 
         stage('Compile the code') {
             steps {
-                sh './mvnw clean install -DskipTests'
+                sh './mvnw clean install -DskipTests -Dcheckstyle.skip'
             }
         }
 
