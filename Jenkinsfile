@@ -48,12 +48,12 @@ pipeline {
                     // Download HTML template
                     sh 'curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl > html.tpl'
                     // Scan Docker image for vulnerabilities
-                    // sh """
-                    //     trivy image spring-petclinic:3.1.0-SNAPSHOT --format template --template @./html.tpl --output trivy_report.html
-                    // """
                     sh """
-                        trivy filesystem --ignore-unfixed --vuln-type os,library --format template --template @./html.tpl --output trivy_report.html ./
+                        trivy image spring-petclinic:3.1.0-SNAPSHOT --format template --template @./html.tpl --output trivy_report.html
                     """
+                    // sh """
+                    //     trivy filesystem --ignore-unfixed --vuln-type os,library --format template --template @./html.tpl --output trivy_report.html ./
+                    // """
                 }
             }
         }
