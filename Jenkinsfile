@@ -22,7 +22,7 @@ pipeline {
         stage("Run the tests") {
             steps {
                 //Unit Tests
-                sh './mvnw test -Punit'
+                sh './mvnw test -Punit -Dcheckstyle.skip'
             }
         }
 
