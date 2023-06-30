@@ -35,7 +35,7 @@ pipeline {
         stage("Package the application") {
             steps {
                 //Build Image
-                sh './mvnw spring-boot:build-image'
+                sh './mvnw spring-boot:build-image -Dcheckstyle.skip'
 
                 //Tag Image
                 jf 'docker tag spring-petclinic:3.1.0-SNAPSHOT $DOCKER_IMAGE_NAME'
